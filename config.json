@@ -1,0 +1,15 @@
+{
+    "upstream": "https://upstream.example.com/",
+    "stable": "https://stable.example.com/",
+    "dir": "./output/",
+    "pre": [
+        "window.scrollBy(0, 100);",
+        "window.scrollBy(0, -100);"
+    ],
+    "targets": [
+        { "url": "" },
+        { "url": "about/" },
+        { "url": "blog/" },
+        { "url": "sitemap/" }
+    ]
+}
