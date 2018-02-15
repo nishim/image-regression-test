@@ -19,7 +19,9 @@ resemble.outputSettings({
     }
 
     for (let i = 0; i < config.targets.length; i++) {
-        const ssname = config.targets[i].url.replace(/\/$/, '').replace('/','___') + '.png';
+        const t = config.targets[i];
+
+        const ssname = t.url ? t.url.replace(/\/$/, '').replace('/','___') + '.png' : 'index.png';
 
         const stableUrl = config.stable + config.targets[i].url;
         const stableSsPath = `${config.dir}stable/${ssname}`;
