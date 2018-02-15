@@ -14,6 +14,9 @@ resemble.outputSettings({
 (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
+    if (config.emulation) {
+        await page.emulate(config.emulation);
+    }
 
     for (let i = 0; i < config.targets.length; i++) {
         const ssname = config.targets[i].url.replace(/\/$/, '').replace('/','___') + '.png';
