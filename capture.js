@@ -23,7 +23,7 @@ resemble.outputSettings({
 
         const ssname = t.url ? t.url.replace(/\/$/, '').replace('/','___') + '.png' : 'index.png';
 
-        const stableUrl = config.stable + config.targets[i].url;
+        const stableUrl = config.stable + t.url;
         const stableSsPath = `${config.dir}stable/${ssname}`;
         await page.goto(`${stableUrl}`);
         await page.waitFor(7000);
@@ -38,7 +38,7 @@ resemble.outputSettings({
             fullPage: true
         });
 
-        const upstreamUrl = config.upstream + config.targets[i].url;
+        const upstreamUrl = config.upstream + t.url;
         const upstreamSsPath = `${config.dir}upstream/${ssname}`;
         await page.goto(`${upstreamUrl}`);
         await page.waitFor(7000);
