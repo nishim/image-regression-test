@@ -52,6 +52,12 @@ const ss = async (p, c, u, ss) => {
         const diffSsPath = `${config.dir}diff/${ssname}`;
         resemble(stableSsPath).compareTo(upstreamSsPath).onComplete((data) => {
             if (data.misMatchPercentage > 0) {
+                console.log(sprintf("[%03d/%03d]\t%s\t%s", (i + 1), targetNum, 'NG', u));
+            } else {
+                console.log(sprintf("[%03d/%03d]\t%s\t%s", (i + 1), targetNum, 'OK', u));
+            }
+
+            if (data.misMatchPercentage > 0 || config.outputNoDiffImage) {
                 const stream = data.getDiffImage().pack();
                 let buffer = new Buffer([])
                 stream.on('data', (data) => {
@@ -65,10 +71,6 @@ const ss = async (p, c, u, ss) => {
                     });
                 });
     
-                console.log(sprintf("[%03d/%03d]\t%s\t%s", (i + 1), targetNum, 'ng', u));
-            } else {
-                fs.copyFile('./banzai_people.png', diffSsPath, (err) => {});
-                console.log(sprintf("[%03d/%03d]\t%s\t%s", (i + 1), targetNum, 'ok', u));
             }
         });
         await page.waitFor(1000);
