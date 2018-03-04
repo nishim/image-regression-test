@@ -38,14 +38,15 @@ const ss = async (p, c, u, ss) => {
     for (let i = 0; i < targetNum; i++) {
         const t = config.targets[i];
         const u = t.url;
+        const s = t.scheme ? t.scheme : 'https';
 
         const ssname = t.url ? t.url.replace(/\/$/, '').replace('/','___') + '.png' : 'index.png';
 
-        const stableUrl = config.stable + t.url;
+        const stableUrl = s + '://' + config.stable + '/' + t.url;
         const stableSsPath = `${config.dir}stable/${ssname}`;
         await ss(page, config, stableUrl, stableSsPath);
 
-        const upstreamUrl = config.upstream + t.url;
+        const upstreamUrl = s + '://' + config.upstream + '/' + t.url;
         const upstreamSsPath = `${config.dir}upstream/${ssname}`;
         await ss(page, config, upstreamUrl, upstreamSsPath);
 
@@ -70,7 +71,6 @@ const ss = async (p, c, u, ss) => {
                         });
                     });
                 });
-    
             }
         });
         await page.waitFor(1000);

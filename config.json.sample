@@ -1,6 +1,6 @@
 {
-    "upstream": "https://upstream.example.com/",
-    "stable": "https://stable.example.com/",
+    "upstream": "upstream.example.com",
+    "stable": "stable.example.com",
     "dir": "./output/",
     "emulation": {
         "viewport": {
@@ -15,9 +15,9 @@
         "window.scrollBy(0, -100);"
     ],
     "targets": [
-        { "url": "" },
-        { "url": "about/" },
-        { "url": "blog/" },
-        { "url": "sitemap/" }
+        { "url": "/" },
+        { "url": "/about/" },
+        { "url": "/blog/", "scheme": "http" },
+        { "url": "/sitemap/" }
     ]
 }
